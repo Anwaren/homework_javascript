@@ -1,4 +1,4 @@
-
+/*
 //Линейные алгоритмы
 //1. Поменять местами значения двух переменных.
 {
@@ -30,14 +30,14 @@
 
     getLineEquation(-2, 1, 2, 3);
 }
-
+*/
 
 function random(min, max)
 {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
+/*
 //Условия
 //1. Не прибегая к библиотеке Math, посчитать выражение (max(a*b*c, a+b+c) + 3). a, b и c - рандом от -10 до 10 
 {
@@ -234,5 +234,78 @@ function random(min, max)
 
     console.log(result);
 }
+*/
+
+// Массивы
+//1. Задан массив из 20 элементов (рандом от -100 до 100). Найти наибольший элемент массива и его индекс
+
+const my_array = []
+
+for(let i =0; i < 9; ++i)
+{
+    my_array.push(random(-100, 100));
+}
+
+let max = my_array[0];
+let index = 0;
+
+for(let i =1; i < my_array.length; ++i)
+{
+    if(my_array[i] > max)
+    {
+        max = my_array[i];
+        index = i;
+    }
+}
+
+console.log(`Наибольший элемент массива = ${max}, индекс элемента - ${index}`);
+
+//2. Сделать реверс массива (расположить элементы массива в обратном направлении - не вернуть новый массив, а поменять именно в исходном)
+
+console.log(`Исходное расположение элементов в массиве ${my_array}`);
+
+const array_len = my_array.length;
+
+for(let i =0; i < array_len/2; ++i)
+{
+    [my_array[i], my_array[array_len-1-i]] = [my_array[array_len-1-i], my_array[i]];
+}
+
+console.log(`Расположение элементов в массиве после реверса ${my_array}`);
+
+//3. Поменять местами первую и вторую половину массива, например, для массива 1 2 3 4, результат 3 4 1 2
+
+let middle = parseInt(array_len / 2);
+
+for(let i =0; i < middle; ++i)
+{
+    [my_array[i], my_array[array_len - middle + i]] = [my_array[array_len -middle + i], my_array[i]];
+}
+
+console.log(`Поменяли местами первую и вторую половину массива ${my_array}`);
+
+//4. Найти в массиве те элементы, значение которых меньше среднего арифметического, взятого от всех элементов массива.
+
+{
+    let array_sum = 0;
+    my_array.forEach(function(item, i, arr) {array_sum += item});
+
+    let my_filter = my_array.filter(number => number < array_sum/my_array.length);
+
+    console.log(`Элементы, меньшие чем среднее арифметическое массива - ${my_filter}`);
+}
+
+//5. В массиве найти сумму элементов, находящихся между минимальным и максимальным элементами. Сами минимальный и максимальный элементы в сумму не включать.
+
+let _max = Math.max.apply(null, my_array);
+let _min = Math.min.apply(null, my_array);
+
+let my_filter = my_array.filter(number => (number > _min) && (number < _max));
+
+let filter_sum = 0;
+my_filter.forEach(function(item, i, arr) {filter_sum += item});
+
+console.log(`Сумма элементов, находящихся между минимальным и максимальным элементами = ${filter_sum}`);
+
 
 let i = 0;
